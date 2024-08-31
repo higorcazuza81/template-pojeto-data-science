@@ -9,21 +9,37 @@ Este repositório oferece uma estrutura padrão para organização de projetos d
 ```plaintext
     project-name/
     │
-    ├── README.md              # Descrição geral do projeto, instruções de configuração e execução
     ├── data/
-    │   ├── raw/               # Dados brutos, diretamente do fornecedor
-    │   ├── processed/         # Dados processados, prontos para análise
     │   ├── external/          # Dados de fontes externas, não brutos, mas complementares
-    │   └── interim/           # Dados intermediários durante o processo de limpeza e transformação
+    │   ├── interim/           # Dados intermediários durante o processo de ETL
+    │   ├── processed/         # Dados processados e prontos para análise
+    │   └── raw/               # Dados brutos, não processados
     │
+    ├── docs/                  # Documentação do projeto, como especificações, manuais, etc.
+    │    ├── data_dictionary.md # Dicionário de dados
+    │    └── specifications.md # Especificações do projeto
+    │ 
+    ├── environment/           # Arquivos relacionados ao ambiente, como conda environment e requirements
+    │   ├── environment.yml    # Arquivo de configuração do ambiente conda
+    │   ├── requirements.txt   # Lista de pacotes pip (para compatibilidade)
+    │   └── setup.py           # Script para configurar o pacote se necessário
+    │   
     ├── notebooks/             # Jupyter Notebooks para exploração e análises iniciais
-    │   ├── 01-data-exploration.ipynb
-    │   └── 02-modeling.ipynb
+    │   ├── analysis/          # Notebooks para análises exploratórias
+    │   ├── exploration/       # Notebooks para exploração de dados
+    │   ├── final/             # Notebooks finais, com análises e visualizações principais
+    │   └── visualization/     # Notebooks para visualização de dados
+    │
+    ├── output/                # Resultados das análises, como gráficos, tabelas, relatórios
+    │   ├── figures/           # Gráficos gerados durante a análise
+    │   ├── reports/           # Relatórios e documentos de análise
+    │   └── tables/            # Tabelas geradas durante a análise
     │
     ├── scripts/               # Scripts de Python para manipulação de dados, treinamento de modelos, etc.
-    │   ├── data_preparation.py
-    │   ├── feature_engineering.py
-    │   └── model_training.py
+    │   ├── data_analysis/     # Scripts para análise de dados
+    │   ├── data_processing/   # Scripts para limpeza e transformação de dados
+    │   ├── data_visualization/ # Scripts para visualização de dados
+    │   └── utils/             # Funções e classes reutilizáveis
     │
     ├── src/                   # Código-fonte do projeto, incluindo módulos reutilizáveis e funções
     │   ├── __init__.py        # Arquivo que torna o diretório um pacote Python
@@ -32,42 +48,55 @@ Este repositório oferece uma estrutura padrão para organização de projetos d
     │   └── evaluate_model.py  # Código para avaliar modelos
     │
     ├── tests/                 # Testes unitários e de integração para o código
-    │   ├── test_data_loader.py
-    │   ├── test_train_model.py
-    │   └── test_evaluate_model.py
+    │   ├─ integration/        # Testes de integração   
+    │   └── unit/              # Testes unitários
     │
-    ├── results/               # Resultados das análises, como gráficos, tabelas e relatórios
-    │   ├── figures/
-    │   └── reports/
+    ├── .gitignore             # Arquivo para especificar quais arquivos/pastas não devem ser versionados pelo git
     │
-    ├── environment/           # Arquivos relacionados ao ambiente, como conda environment e requirements
-    │   ├── environment.yml    # Arquivo de configuração do ambiente conda
-    │   ├── requirements.txt   # Lista de pacotes pip (para compatibilidade)
-    │   └── setup.py           # Script para configurar o pacote se necessário
+    ├── LICENSE.md             # Licença do projeto
     │
-    └── .gitignore             # Arquivo para especificar quais arquivos/pastas não devem ser versionados pelo git
+    └── README.md              # Documentação principal do projeto
 ```
 ## Descrição das Pastas
 
-  - **data/**: Diretório onde todos os dados do projeto são armazenados.
-  - **raw/**: Dados brutos, que não foram processados. Exemplo: `dataset.csv`.
-  - **processed/**: Dados que foram processados e estão prontos para análise. Exemplo: `cleaned_data.csv`.
-  - **external/**: Dados de fontes externas que complementam o dataset principal. Exemplo: `external_data.xlsx`.
-  - **interim/**: Dados intermediários durante o processo de ETL (Extract, Transform, Load). Exemplo: `interim_data.csv`.
+- **data/**: Diretório onde todos os dados do projeto são armazenados.
+    - **external/**: Dados de fontes externas, como APIs, bancos de dados, e arquivos de terceiros. Exemplo: `external_data.csv`.
+    - **interim/**: Dados intermediários gerados durante o processo de ETL (Extract, Transform, Load). Exemplo: `interim_data.csv`.
+    - **processed/**: Dados processados e prontos para análise. Exemplo: `processed_data.csv`.
+    - **raw/**: Dados brutos, não processados. Exemplo: `raw_data.csv`.
+  
+- **docs/**: Diretório para armazenar documentos relacionados ao projeto, como especificações, dicionarios de dados, e manuais. 
 
-- **notebooks/**: Diretório para armazenar notebooks Jupyter usados para a exploração de dados, desenvolvimento de modelos, e visualizações preliminares. Exemplo: `01-data-exploration.ipynb`.
+- **environment/**: Diretório para armazenar arquivos de configuração do ambiente, como `environment.yml` para configuração com conda, e `requirements.txt` para instalação de pacotes com pip.
 
-- **scripts/**: Diretório para scripts Python que executam tarefas específicas como preparação de dados, engenharia de features, e treinamento de modelos. Exemplo: `data_preparation.py`.
+- **notebooks/**: Diretório para armazenar notebooks Jupyter usados para a exploração de dados, desenvolvimento de modelos, e visualizações preliminares.
+    - **analysis/**: Notebooks para análises exploratórias. Exemplo: `exploratory_analysis.ipynb`.
+    - **exploration/**: Notebooks para exploração de dados. Exemplo: `data_exploration.ipynb`.
+    - **final/**: Notebooks finais, com análises e visualizações principais. Exemplo: `final_analysis.ipynb`.
+    - **visualization/**: Notebooks para visualização de dados. Exemplo: `data_visualization.ipynb`. 
+
+- **output/**: Diretório para armazenar os resultados das análises, como gráficos, relatórios, e tabelas geradas. Exemplo: `analysis_plot.png`.
+    - **figures/**: Gráficos gerados a partir das análises. Exemplo: `plot.png`.
+    - **reports/**: Relatórios gerados a partir das análises. Exemplo: `report.pdf`.
+    - **tables/**: Tabelas geradas a partir das análises. Exemplo: `summary_table.csv`.
+
+- **scripts/**: Diretório para scripts Python que executam tarefas específicas como preparação de dados, engenharia de features, e treinamento de modelos.
+    - **data_analysis/**: Scripts para análise de dados. Exemplo: `data_analysis.py`.
+    - **data_processing/**: Scripts para limpeza e transformação de dados. Exemplo: `data_preprocessing.py`.
+    - **data_visualization/**: Scripts para visualização de dados. Exemplo: `data_visualization.py`.
+    - **utils/**: Funções e classes reutilizáveis. Exemplo: `utils.py`.
 
 - **src/**: Diretório contendo o código-fonte do projeto. Este código geralmente é modular e pode ser reutilizado. Exemplo: `data_loader.py`.
 
-- **tests/**: Diretório para testes unitários e de integração, assegurando a qualidade do código. Exemplo: `test_data_loader.py`.
-
-- **results/**: Diretório para armazenar os resultados das análises, como gráficos, relatórios, e tabelas geradas. Exemplo: `analysis_plot.png`.
-
-- **environment/**: Contém arquivos de configuração do ambiente, como `environment.yml` para configuração com conda, e `requirements.txt` para instalação de pacotes com pip.
+- **tests/**: Diretório para testes unitários e de integração, assegurando a qualidade do código.
+    - **integration/**: Testes de integração. Exemplo: `test_integration.py`.
+    - **unit/**: Testes unitários. Exemplo: `test_unit.py`.
 
 - **.gitignore**: Arquivo para listar arquivos e diretórios que não devem ser versionados.
+  
+- **LICENSE.md**: Arquivo contendo a licença do projeto.
+  
+- **README.md**: Documentação principal do projeto, contendo uma descrição geral, instruções de uso, e informações de contato.
 
 ## Uso dos Arquivos .gitkeep
 Os arquivos .gitkeep foram incluídos em todos os diretórios vazios para garantir que esses diretórios sejam rastreados pelo Git. O Git não versiona automaticamente diretórios vazios, portanto, o .gitkeep serve como um placeholder para assegurar que a estrutura do projeto seja mantida quando o repositório é clonado. Quando você adicionar arquivos reais nesses diretórios, você pode remover o .gitkeep ou deixá-lo no diretório, conforme sua preferência.
