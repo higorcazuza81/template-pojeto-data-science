@@ -49,7 +49,7 @@ Este repositório oferece uma estrutura padrão para organização de projetos d
 ```
 ## Descrição das Pastas
 
-- **data/**: Diretório onde todos os dados do projeto são armazenados.
+  - **data/**: Diretório onde todos os dados do projeto são armazenados.
   - **raw/**: Dados brutos, que não foram processados. Exemplo: `dataset.csv`.
   - **processed/**: Dados que foram processados e estão prontos para análise. Exemplo: `cleaned_data.csv`.
   - **external/**: Dados de fontes externas que complementam o dataset principal. Exemplo: `external_data.xlsx`.
@@ -68,6 +68,9 @@ Este repositório oferece uma estrutura padrão para organização de projetos d
 - **environment/**: Contém arquivos de configuração do ambiente, como `environment.yml` para configuração com conda, e `requirements.txt` para instalação de pacotes com pip.
 
 - **.gitignore**: Arquivo para listar arquivos e diretórios que não devem ser versionados.
+
+## Uso dos Arquivos .gitkeep
+Os arquivos .gitkeep foram incluídos em todos os diretórios vazios para garantir que esses diretórios sejam rastreados pelo Git. O Git não versiona automaticamente diretórios vazios, portanto, o .gitkeep serve como um placeholder para assegurar que a estrutura do projeto seja mantida quando o repositório é clonado. Quando você adicionar arquivos reais nesses diretórios, você pode remover o .gitkeep ou deixá-lo no diretório, conforme sua preferência.
   
 ## Como Usar
 
